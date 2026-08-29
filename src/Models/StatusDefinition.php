@@ -6,26 +6,16 @@ namespace Liberu\RealEstate\Core\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Liberu\Foundation\Organizations\Models\Team;
 
-final class Branch extends Model
+final class StatusDefinition extends Model
 {
-    use SoftDeletes;
-
-    protected $table = 'real_estate_branches';
+    protected $table = 'real_estate_status_definitions';
 
     protected $guarded = ['id'];
 
     protected function casts(): array
     {
-        return ['metadata' => 'array'];
-    }
-
-    public function team(): BelongsTo
-    {
-        return $this->belongsTo(Team::class);
+        return ['active' => 'boolean'];
     }
 
     public function scopeForTeam(Builder $query, int|string $teamId): Builder
