@@ -10,17 +10,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Liberu\Foundation\Organizations\Models\Team;
 
-final class Branch extends Model
+final class Agency extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'real_estate_branches';
+    protected $table = 'real_estate_agencies';
 
     protected $guarded = ['id'];
 
     protected function casts(): array
     {
-        return ['metadata' => 'array'];
+        return ['active' => 'boolean', 'metadata' => 'array'];
     }
 
     public function team(): BelongsTo
